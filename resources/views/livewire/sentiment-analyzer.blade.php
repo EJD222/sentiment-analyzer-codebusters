@@ -5,7 +5,8 @@
 
     @if ($result)
         <div class="result">
-            <p>Result: {{ $result }}</p>
+            <h3>Analysis Result:</h3>
+            <p>Sentiment: {{ $result }}</p>
         </div>
     @endif
 </div>
