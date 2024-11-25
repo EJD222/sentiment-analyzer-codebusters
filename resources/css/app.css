@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.positive-word {
+    color: yellow !important;
+    font-weight: bold !important;
+}
+
+.negative-word {
+    color: red !important;
+    font-weight: bold !important;
+}
