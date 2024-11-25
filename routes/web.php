@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SentimentController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -17,3 +18,5 @@ Route::get('/about', function () {
 Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
+
+Route::post('/sentiment/analyze', [SentimentController::class, 'analyze'])->name('sentiment.analyze');
