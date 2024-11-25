@@ -35,7 +35,10 @@ class SentimentController extends Controller
                 $response['subjectivity']
             );
 
-            return redirect()->route('sentiment')->with('result', $formattedResult);
+            return redirect()->route('sentiment')->with([
+                'result' => $formattedResult,
+                'highlighted_text' => $response['highlighted_text'],
+            ]);
         } else {
             \Log::error('Error analyzing sentiment. Command Output: ' . $output);
             return redirect()->route('sentiment')->with('error', 'Error analyzing sentiment.');

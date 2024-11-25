@@ -6,9 +6,17 @@
     </div>
     <button type="submit">Analyze</button>
 </form>
+
 @if (session('result'))
     <div class="result">
         <p><strong>Result:</strong> {{ session('result') }}</p>
+    </div>
+@endif
+
+@if (session('highlighted_text'))
+    <div class="highlighted-text">
+        <p><strong>Highlighted Text:</strong></p>
+        <p>{!! session('highlighted_text') !!}</p>
     </div>
 @endif
 
