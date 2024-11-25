@@ -1,6 +1,6 @@
 <style>
     .positive-word {
-        color: yellow !important;
+        color: green !important;
         font-weight: bold !important;
     }
 
@@ -9,21 +9,33 @@
         font-weight: bold !important;
     }
 </style>
+
 <div>
-    <textarea wire:model="text" placeholder="Enter text to analyze" rows="6" cols="50"></textarea>
-    <button wire:click="analyze" class="mt-2 px-4 py-2 bg-blue-500 text-white rounded">Analyze</button>
+    <form action="{{ route('sentiment.analyze') }}" method="POST">
+        @csrf
+        <div>
+            <h2>Enter text for sentiment analysis:</h2>
+            <textarea name="text" placeholder="Type your text here" rows="4" cols="50"></textarea>
+        </div>
+        <button type="submit">Analyze</button>
+    </form>
 
-    @if ($result)
-        <div class="mt-4">
-            <h1 class="font-semibold text-lg">Analysis Result:</h1>
-            <p>{!! nl2br(e($result)) !!}</p>
+    @if (session('result'))
+        <div class="result">
+            <p><strong>Result:</strong> {{ session('result') }}</p>
+        </div>
+    @endif
 
-            @if ($highlightedText)
-                <div class="mt-2">
-                    <h4 class="font-semibold text-lg" style='color: yellow'>Highlighted Text:</h4>
-                    <p>{!! session('highlighted_text') !!}</p>
-                </div>
-            @endif
+    @if (session('highlighted_text'))
+        <div class="highlighted-text">
+            <p><strong>Highlighted Text:</strong></p>
+            <p>{!! session('highlighted_text') !!}</p>
+        </div>
+    @endif
+
+    @if (session('error'))
+        <div class="error">
+            <p><strong>Error:</strong> {{ session('error') }}</p>
         </div>
     @endif
 </div>
